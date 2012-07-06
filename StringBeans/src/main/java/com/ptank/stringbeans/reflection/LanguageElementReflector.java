@@ -7,17 +7,17 @@ import java.util.List;
 
 import org.apache.commons.beanutils.PropertyUtils;
 
-import com.ptank.stringbeans.core.BeanString;
-import com.ptank.stringbeans.core.BeanString.BeanStringComponent;
-import com.ptank.stringbeans.core.BeanString.ComponentType;
-import com.ptank.stringbeans.core.LanguageElement;
-import com.ptank.stringbeans.core.Parameter;
+import com.ptank.stringbeans.element.BeanString;
+import com.ptank.stringbeans.element.Parameter;
+import com.ptank.stringbeans.element.BeanString.BeanStringComponent;
+import com.ptank.stringbeans.element.BeanString.ComponentType;
+import com.ptank.stringbeans.element.primitive.LanguagePrimitive;
 
 public class LanguageElementReflector {
 
-	private LanguageElement target;
+	private LanguagePrimitive target;
 	
-	public LanguageElementReflector(LanguageElement target) {
+	public LanguageElementReflector(LanguagePrimitive target) {
 		this.target = target;
 	}
 	
@@ -27,11 +27,11 @@ public class LanguageElementReflector {
 		ArrayList<Parameter<?>> result = new ArrayList<Parameter<?>>();
 		
 		for(PropertyDescriptor descriptor : descriptors) {
-			if(LanguageElement.class.isAssignableFrom(descriptor.getPropertyType())) {
+			if(LanguagePrimitive.class.isAssignableFrom(descriptor.getPropertyType())) {
 				try {
 					Parameter parameter = new Parameter(descriptor.getPropertyType());
 					parameter.setName(descriptor.getName());
-					parameter.setValue((LanguageElement)descriptor.getReadMethod().invoke(target));
+					parameter.setValue((LanguagePrimitive)descriptor.getReadMethod().invoke(target));
 					result.add(parameter);
 				} catch(InvocationTargetException ex) {
 					throw new RuntimeException("Error reflecting on parameter: " + descriptor.getName(),ex);

@@ -1,6 +1,8 @@
-package com.ptank.stringbeans.core;
+package com.ptank.stringbeans.element;
 
-public class Parameter<T extends LanguageElement> {
+import com.ptank.stringbeans.element.primitive.LanguagePrimitive;
+
+public class Parameter<T extends LanguagePrimitive> {
 
 	private Class<T> parameterType;
 	private T value;

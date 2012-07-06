@@ -5,7 +5,7 @@ import javax.swing.JTree;
 
 import org.junit.Test;
 
-import com.ptank.stringbeans.core.Action;
+import com.ptank.stringbeans.element.primitive.PrimitiveAction;
 import com.ptank.stringbeans.stdlib.basic.LiteralNoun;
 import com.ptank.stringbeans.stdlib.io.actions.AndThen;
 import com.ptank.stringbeans.stdlib.io.actions.PrintToConsole;
@@ -14,7 +14,7 @@ import com.ptank.stringbeans.ui.components.LanguageElementTreeModel;
 
 public class HelloWorldTest {
 
-	private static Action createHelloWorldAction() {
+	private static PrimitiveAction createHelloWorldAction() {
 		PrintToConsole helloAction = new PrintToConsole();
 		PrintToConsole worldAction = new PrintToConsole();
 		helloAction.setMessageToPrint(new LiteralNoun<String>("Hello"));
@@ -27,12 +27,12 @@ public class HelloWorldTest {
 	
 	@Test
 	public void testHelloWorldAction() {
-		Action action = HelloWorldTest.createHelloWorldAction();
+		PrimitiveAction action = HelloWorldTest.createHelloWorldAction();
 		action.doAction();
 	}
 	
 	public static void main(String args[]) {
-		Action action = createHelloWorldAction();
+		PrimitiveAction action = createHelloWorldAction();
 		
 		LanguageElementTreeModel treeModel = new LanguageElementTreeModel(action);
 		

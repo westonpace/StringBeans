@@ -1,10 +1,10 @@
-package com.ptank.stringbeans.core;
+package com.ptank.stringbeans.element;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.ptank.stringbeans.core.BeanString.BeanStringComponent;
+import com.ptank.stringbeans.element.BeanString.BeanStringComponent;
 
 public class BeanString implements Iterable<BeanStringComponent> {
 

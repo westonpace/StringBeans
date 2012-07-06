@@ -6,29 +6,29 @@ import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
-import com.ptank.stringbeans.core.LanguageElement;
-import com.ptank.stringbeans.core.Parameter;
+import com.ptank.stringbeans.element.Parameter;
+import com.ptank.stringbeans.element.primitive.LanguagePrimitive;
 import com.ptank.stringbeans.reflection.LanguageElementReflector;
 
 public class LanguageElementTreeModel implements TreeModel {
 
-	private LanguageElement model;
+	private LanguagePrimitive model;
 	
 	private class ElementNode {
 		
-		private LanguageElement element;
+		private LanguagePrimitive element;
 		private String name;
 
-		public ElementNode(LanguageElement element) {
+		public ElementNode(LanguagePrimitive element) {
 			this.element = element;
 		}
 		
-		public ElementNode(LanguageElement element, String name) {
+		public ElementNode(LanguagePrimitive element, String name) {
 			this.element = element;
 			this.name = name;
 		}
 		
-		public LanguageElement getElement() {
+		public LanguagePrimitive getElement() {
 			return element;
 		}
 
@@ -41,7 +41,7 @@ public class LanguageElementTreeModel implements TreeModel {
 		}
 	}
 	
-	public LanguageElementTreeModel(LanguageElement model) {
+	public LanguageElementTreeModel(LanguagePrimitive model) {
 		this.model = model;
 	}
 	
