@@ -1,0 +1,14 @@
+Can play a card when it is the PLAY phase
+When a card is played it enters the WAIT phase for 1 second then returns
+  to the PLAY phase
+There are seven colors, red, orange, yellow, green, blue, indigo, and violet
+The player starts with one of each card
+
+The cards:
+
+Add a red and an orange token
+Replace an orange token for the token of your choice
+Remove all green tokens and add two yellow tokens
+If there is an indigo token add a violet token
+Add a green token
+Remove two tokens of the same color to add a red, orange, blue, and indigo token
