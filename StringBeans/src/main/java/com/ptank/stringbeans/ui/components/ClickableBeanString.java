@@ -1,5 +1,7 @@
 package com.ptank.stringbeans.ui.components;
 
+import java.awt.event.InputEvent;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -14,6 +16,8 @@ import com.ptank.stringbeans.ui.core.Event.EventListener;
 public class ClickableBeanString extends JPanel {
 
 	private LanguageElement model;
+	
+	private ClickableLabel selectedLabel = null;
 	
 	public ClickableBeanString(LanguageElement model) {
 		setModel(model);
@@ -34,12 +38,23 @@ public class ClickableBeanString extends JPanel {
 				addBeanItem(beanStringComponent.getValue());
 			}
 		}
+		revalidate();
 		repaint();
-		invalidate();
 	}
 	
 	private void addTextItem(String text) {
 		add(new JLabel(text));
+	}
+	
+	private void select(ClickableLabel newValue) {
+		if(selectedLabel == newValue) { 
+			return;
+		}
+		if(selectedLabel != null) {
+			selectedLabel.setSelected(false);
+		} 
+		newValue.setSelected(true);
+		selectedLabel = newValue;
 	}
 	
 	private void addBeanItem(String beanName) {
@@ -58,7 +73,11 @@ public class ClickableBeanString extends JPanel {
 
 		@Override
 		public void onEvent(LabelClickedEvent event) {
-			setModel(event.getElement());
+			if((event.getClickModifiers() & InputEvent.CTRL_DOWN_MASK) == InputEvent.CTRL_DOWN_MASK) {
+				select(event.getSource());
+			} else {
+				setModel(event.getElement());
+			}
 		}
 		
 	}

@@ -1,12 +1,14 @@
 package com.ptank.stringbeans.test;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.JTree;
 
 import org.junit.Test;
 
-import com.ptank.stringbeans.builder.InMemoryLibrary;
 import com.ptank.stringbeans.builder.Library;
+import com.ptank.stringbeans.builder.PrimitivesLibrary.PrimitiveActionsLibrary;
 import com.ptank.stringbeans.element.Action;
 import com.ptank.stringbeans.element.primitive.PrimitiveAction;
 import com.ptank.stringbeans.element.primitive.wrappers.PrimitiveActionElement;
@@ -33,10 +35,10 @@ public class HelloWorldTest {
 		return andThenAction;
 	}
 	
-	private static Library createSimpleLibrary() {
-		InMemoryLibrary result = new InMemoryLibrary();
-		result.addItem(AndThen.class);
-		result.addItem(PrintToConsole.class);
+	private static Library<?> createSimpleLibrary() {
+		PrimitiveActionsLibrary result = new PrimitiveActionsLibrary();
+		result.addPrimitiveClass(AndThen.class);
+		result.addPrimitiveClass(PrintToConsole.class);
 		return result;
 	}
 	
@@ -52,7 +54,7 @@ public class HelloWorldTest {
 		
 		LanguageElementTreeModel treeModel = new LanguageElementTreeModel(actionElement);
 		
-		Library basicLibrary = createSimpleLibrary();
+		Library<?> basicLibrary = createSimpleLibrary();
 		
 		JFrame mainFrame = new JFrame("Test");
 		
@@ -69,9 +71,11 @@ public class HelloWorldTest {
 			
 		});
 		
+		beanString.setPreferredSize(new Dimension(50,25));
+		
 		//mainFrame.add(tree);
-		//mainFrame.add(beanString);
-		mainFrame.add(elementChooser);
+		mainFrame.add(beanString);
+		//mainFrame.add(elementChooser);
 		mainFrame.pack();
 		mainFrame.setVisible(true);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
