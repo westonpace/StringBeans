@@ -1,28 +1,28 @@
 package com.ptank.stringbeans.rainbow.actions;
 
+import com.ptank.stringbeans.element.Noun;
 import com.ptank.stringbeans.element.primitive.PrimitiveAction;
-import com.ptank.stringbeans.element.primitive.PrimitiveNoun;
 import com.ptank.stringbeans.rainbow.core.BasicRainbowElement;
 import com.ptank.stringbeans.rainbow.core.Color;
 
 public class RemoveTokenFromPool extends BasicRainbowElement implements PrimitiveAction{
 
-	private PrimitiveNoun<Color> color;
-	private PrimitiveNoun<Integer> num;
+	private Noun<Color> color;
+	private Noun<Integer> num;
 	
-	public PrimitiveNoun< Color> getColor() {
+	public Noun< Color> getColor() {
 		return color;
 	}
 
-	public void setColor(PrimitiveNoun< Color> color) {
+	public void setColor(Noun< Color> color) {
 		this.color = color;
 	}
 	
-	public PrimitiveNoun<Integer> getNum() {
+	public Noun<Integer> getNum() {
 		return num;
 	}
 
-	public void setNum(PrimitiveNoun<Integer> num) {
+	public void setNum(Noun<Integer> num) {
 		this.num = num;
 	}
 

@@ -1,9 +1,13 @@
 package com.ptank.stringbeans.builder;
 
-import java.util.Collection;
+import java.util.List;
 
-public interface Library {
+import com.ptank.stringbeans.element.LanguageElement;
 
-	public <T> Collection<T> retrieveItems(Class<T> elementClass);
+public interface Library<T extends LanguageElement> {
+
+	public List<String> getItemNames();
+	
+	public T buildItem(String name);
 	
 }

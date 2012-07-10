@@ -1,19 +1,19 @@
 package com.ptank.stringbeans.rainbow.expressions;
 
+import com.ptank.stringbeans.element.Noun;
 import com.ptank.stringbeans.element.primitive.PrimitiveExpression;
-import com.ptank.stringbeans.element.primitive.PrimitiveNoun;
 import com.ptank.stringbeans.rainbow.core.BasicRainbowElement;
 import com.ptank.stringbeans.rainbow.core.Color;
 
 public class IsTokenPresent extends BasicRainbowElement implements PrimitiveExpression {
 
-	private PrimitiveNoun<Color> color;
+	private Noun<Color> color;
 	
-	public PrimitiveNoun<Color> getColor() {
+	public Noun<Color> getColor() {
 		return color;
 	}
 
-	public void setColor(PrimitiveNoun<Color> color) {
+	public void setColor(Noun<Color> color) {
 		this.color = color;
 	}
 

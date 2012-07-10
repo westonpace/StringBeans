@@ -1,37 +1,32 @@
 package com.ptank.stringbeans.ui.components;
 
-import java.awt.Component;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.ptank.stringbeans.element.BeanString;
 import com.ptank.stringbeans.element.BeanString.BeanStringComponent;
 import com.ptank.stringbeans.element.BeanString.ComponentType;
-import com.ptank.stringbeans.element.primitive.LanguagePrimitive;
-import com.ptank.stringbeans.reflection.LanguageElementReflector;
+import com.ptank.stringbeans.element.LanguageElement;
 import com.ptank.stringbeans.ui.components.ClickableLabel.LabelClickedEvent;
 import com.ptank.stringbeans.ui.core.Event.EventListener;
 
 @SuppressWarnings("serial")
 public class ClickableBeanString extends JPanel {
 
-	private LanguagePrimitive model;
-	private LanguageElementReflector modelReflector;
+	private LanguageElement model;
 	
-	public ClickableBeanString(LanguagePrimitive model) {
+	public ClickableBeanString(LanguageElement model) {
 		setModel(model);
 	}
 	
-	private void setModel(LanguagePrimitive model) {
+	private void setModel(LanguageElement model) {
 		this.model = model;
-		this.modelReflector = new LanguageElementReflector(model);
 		updateChildren();
 	}
 	
 	private void updateChildren() {
 		removeAll();
-		BeanString beanString = new BeanString(model.getBeanString());
+		BeanString beanString = model.getBeanString();
 		for(BeanStringComponent beanStringComponent : beanString) {
 			if(beanStringComponent.getComponentType() == ComponentType.TEXT) {
 				addTextItem(beanStringComponent.getValue());
@@ -48,7 +43,7 @@ public class ClickableBeanString extends JPanel {
 	}
 	
 	private void addBeanItem(String beanName) {
-		LanguagePrimitive langElement = modelReflector.getElementParameter(beanName).getValue();
+		LanguageElement langElement = model.getParameters().get(beanName).getValue();
 		ClickableLabel label = null;
 		if(langElement == null) {
 			label = new ClickableLabel(beanName);

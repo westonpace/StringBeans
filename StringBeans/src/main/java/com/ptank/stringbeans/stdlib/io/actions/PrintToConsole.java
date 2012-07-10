@@ -1,17 +1,18 @@
 package com.ptank.stringbeans.stdlib.io.actions;
 
+import com.ptank.stringbeans.element.Noun;
 import com.ptank.stringbeans.element.primitive.PrimitiveAction;
 import com.ptank.stringbeans.element.primitive.PrimitiveNoun;
 
 public class PrintToConsole implements PrimitiveAction {
 
-	private PrimitiveNoun<String> messageToPrint;
+	private Noun<String> messageToPrint;
 	
-	public void setMessageToPrint(PrimitiveNoun<String> messageToPrint) {
+	public void setMessageToPrint(Noun<String> messageToPrint) {
 		this.messageToPrint = messageToPrint;
 	}
 	
-	public PrimitiveNoun<String> getMessageToPrint() {
+	public Noun<String> getMessageToPrint() {
 		return messageToPrint;
 	}
 

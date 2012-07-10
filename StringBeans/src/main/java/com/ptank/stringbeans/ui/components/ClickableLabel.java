@@ -4,39 +4,37 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.Icon;
 import javax.swing.JLabel;
 
-import com.ptank.stringbeans.element.primitive.LanguagePrimitive;
-import com.ptank.stringbeans.reflection.LanguageElementReflector;
+import com.ptank.stringbeans.element.LanguageElement;
 import com.ptank.stringbeans.ui.core.Event;
 
 @SuppressWarnings("serial")
 public class ClickableLabel extends JLabel implements MouseListener {
 
 	private static final Color greenish = new Color(179,238,58);
-	private LanguagePrimitive element;
+	private LanguageElement element;
 	
 	public Event<LabelClickedEvent> labelClickedEvent = new Event<LabelClickedEvent>();
 	
 	public class LabelClickedEvent {
 		
-		private LanguagePrimitive element;
+		private LanguageElement element;
 		
-		public LabelClickedEvent(LanguagePrimitive element) {
+		public LabelClickedEvent(LanguageElement element) {
 			this.element = element;
 		}
 		
-		public LanguagePrimitive getElement() {
+		public LanguageElement getElement() {
 			return element;
 		}
 		
 	}
 	
-	public ClickableLabel(LanguagePrimitive element) {
+	public ClickableLabel(LanguageElement element) {
 		super();
 		this.element = element;
-		setText(new LanguageElementReflector(element).getFullBeanString());
+		setText(element.getFullBeanString());
 		init();
 	}
 
@@ -52,7 +50,7 @@ public class ClickableLabel extends JLabel implements MouseListener {
 		setBackground(greenish);
 	}
 
-	public LanguagePrimitive getElement() {
+	public LanguageElement getElement() {
 		return element;
 	}
 

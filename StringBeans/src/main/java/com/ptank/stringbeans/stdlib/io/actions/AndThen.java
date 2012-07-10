@@ -1,26 +1,27 @@
 package com.ptank.stringbeans.stdlib.io.actions;
 
+import com.ptank.stringbeans.element.Action;
 import com.ptank.stringbeans.element.primitive.PrimitiveAction;
 
 public class AndThen implements PrimitiveAction {
 
-	private PrimitiveAction thisAction;
+	private Action thisAction;
 	
-	private PrimitiveAction that;
+	private Action that;
 
-	public PrimitiveAction getThis() {
+	public Action getThis() {
 		return thisAction;
 	}
 	
-	public void setThis(PrimitiveAction thisAction) {
+	public void setThis(Action thisAction) {
 		this.thisAction = thisAction;
 	}
 
-	public PrimitiveAction getThat() {
+	public Action getThat() {
 		return that;
 	}
 
-	public void setThat(PrimitiveAction that) {
+	public void setThat(Action that) {
 		this.that = that;
 	}
 
