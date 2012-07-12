@@ -24,6 +24,7 @@ public class ClickableBeanString extends JPanel {
 	}
 	
 	private void setModel(LanguageElement model) {
+		select(null);
 		this.model = model;
 		updateChildren();
 	}
@@ -50,10 +51,14 @@ public class ClickableBeanString extends JPanel {
 		if(selectedLabel == newValue) { 
 			return;
 		}
+		
 		if(selectedLabel != null) {
 			selectedLabel.setSelected(false);
-		} 
-		newValue.setSelected(true);
+		}
+		
+		if(newValue != null) {
+			newValue.setSelected(true);
+		}
 		selectedLabel = newValue;
 	}
 	

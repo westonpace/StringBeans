@@ -1,8 +1,14 @@
 package com.ptank.stringbeans.test;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTree;
 
 import org.junit.Test;
@@ -57,9 +63,16 @@ public class HelloWorldTest {
 		Library<?> basicLibrary = createSimpleLibrary();
 		
 		JFrame mainFrame = new JFrame("Test");
+		JPanel mainPanel = new JPanel();
+		mainPanel.setLayout(new GridBagLayout());
+		mainPanel.setPreferredSize(new Dimension(800,600));
 		
 		JTree tree = new JTree(treeModel);
+		tree.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		ClickableBeanString beanString = new ClickableBeanString(actionElement);
+		beanString.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		ClickableBeanString beanString2 = new ClickableBeanString(actionElement);
+		beanString2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		ElementChooser elementChooser = new ElementChooser(basicLibrary, Action.class);
 		
 		elementChooser.elementChosenEvent.addListener(new EventListener<ElementChooser.ElementChosenEvent>() {
@@ -73,9 +86,31 @@ public class HelloWorldTest {
 		
 		beanString.setPreferredSize(new Dimension(50,25));
 		
-		//mainFrame.add(tree);
-		mainFrame.add(beanString);
-		//mainFrame.add(elementChooser);
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.fill = GridBagConstraints.BOTH;
+		c.gridx = 0;
+		c.gridy = 0;
+		c.gridwidth = 1;
+		c.gridheight = 2;
+		c.weightx = 2;
+		c.weighty = 1;
+		mainPanel.add(tree,c);
+		c.gridx = 1;
+		c.gridy = 0;
+		c.gridwidth = 2;
+		c.gridheight = 1;
+		c.weightx = 1;
+		c.weighty = 1;
+		mainPanel.add(beanString,c);
+		c.gridx = 1;
+		c.gridy = 1;
+		c.gridwidth = 2;
+		c.gridheight = 1;
+		c.weightx = 1;
+		c.weighty = 1;
+		mainPanel.add(beanString2,c);
+		mainFrame.add(mainPanel);
 		mainFrame.pack();
 		mainFrame.setVisible(true);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
