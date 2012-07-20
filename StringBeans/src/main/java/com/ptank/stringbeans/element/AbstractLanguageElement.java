@@ -4,9 +4,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.ptank.stringbeans.element.BeanString.BeanStringComponent;
 import com.ptank.stringbeans.element.BeanString.ComponentType;
 
+@XmlRootElement
 public class AbstractLanguageElement implements LanguageElement {
 
 	private Map<String,Parameter<?>> parameters = new HashMap<String,Parameter<?>>();
@@ -40,6 +43,18 @@ public class AbstractLanguageElement implements LanguageElement {
 	@Override
 	public Map<String,Parameter<?>> getParameters() {
 		return parameters;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <T extends LanguageElement> void setParameter(String name, T newValue) {
+		Parameter<T> parameter = (Parameter<T>) parameters.get(name);
+		parameter.setValue(newValue);
+	}
+	
+	public <T extends LanguageElement> void addParameter(String name, Class<T> parameterClass) {
+		Parameter<T> parameter = new Parameter<T>(parameterClass);
+		parameter.setName(name);
+		parameters.put(name, parameter);
 	}
 	
 	public String getFullBeanString() {

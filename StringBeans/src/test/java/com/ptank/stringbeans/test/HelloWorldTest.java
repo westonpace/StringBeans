@@ -4,20 +4,26 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTree;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.junit.Test;
 
 import com.ptank.stringbeans.builder.Library;
 import com.ptank.stringbeans.builder.PrimitivesLibrary.PrimitiveActionsLibrary;
+import com.ptank.stringbeans.element.AbstractLanguageElement;
 import com.ptank.stringbeans.element.Action;
+import com.ptank.stringbeans.element.LanguageElement;
+import com.ptank.stringbeans.element.io.PrimitiveElementXmlAdapter;
 import com.ptank.stringbeans.element.primitive.PrimitiveAction;
 import com.ptank.stringbeans.element.primitive.wrappers.PrimitiveActionElement;
+import com.ptank.stringbeans.element.primitive.wrappers.PrimitiveElement;
 import com.ptank.stringbeans.element.primitive.wrappers.PrimitiveNounElement;
 import com.ptank.stringbeans.stdlib.basic.LiteralNoun;
 import com.ptank.stringbeans.stdlib.io.actions.AndThen;
@@ -48,10 +54,35 @@ public class HelloWorldTest {
 		return result;
 	}
 	
+	@XmlRootElement
+	public static class Foobar {
+		
+		private PrimitiveActionElement pe;
+		
+		public Foobar() {
+			
+		}
+
+		@XmlJavaTypeAdapter(PrimitiveElementXmlAdapter.class)
+		public PrimitiveActionElement getPe() {
+			return pe;
+		}
+
+		public void setPe(PrimitiveActionElement pe) {
+			this.pe = pe;
+		}
+		
+	}
+	
 	@Test
-	public void testHelloWorldAction() {
+	public void testHelloWorldAction() throws Exception {
 		PrimitiveAction action = HelloWorldTest.createHelloWorldAction();
 		action.doAction();
+		PrimitiveActionElement helloWorldElement = new PrimitiveActionElement(action);
+		Foobar foobar = new Foobar();
+		foobar.setPe(helloWorldElement);
+		JAXBContext context = JAXBContext.newInstance(Foobar.class);
+		context.createMarshaller().marshal(foobar, System.out);
 	}
 	
 	public static void main(String args[]) {

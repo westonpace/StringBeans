@@ -5,22 +5,36 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import org.apache.commons.beanutils.PropertyUtils;
 
 import com.ptank.stringbeans.element.AbstractLanguageElement;
 import com.ptank.stringbeans.element.BeanString;
 import com.ptank.stringbeans.element.LanguageElement;
 import com.ptank.stringbeans.element.Parameter;
+import com.ptank.stringbeans.element.io.PrimitiveElementXmlAdapter;
 import com.ptank.stringbeans.element.primitive.LanguagePrimitive;
 
-
+@XmlRootElement
+@XmlJavaTypeAdapter(PrimitiveElementXmlAdapter.class)
 public abstract class PrimitiveElement<T extends LanguagePrimitive> extends AbstractLanguageElement {
 
 	protected T primitive;
 	
+	public PrimitiveElement() {
+		
+	}
+	
 	public PrimitiveElement(T primitive) {
 		this.primitive = primitive;
 		reflectOnPrimitive();
+	}
+	
+	public T getPrimitive() {
+		return primitive;
 	}
 	
 	private void reflectOnPrimitive() {

@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.ptank.stringbeans.element.BeanString.BeanStringComponent;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import com.ptank.stringbeans.element.BeanString.BeanStringComponent;
+import com.ptank.stringbeans.element.io.BeanStringXmlAdapter;
+
+@XmlJavaTypeAdapter(BeanStringXmlAdapter.class)
 public class BeanString implements Iterable<BeanStringComponent> {
 
 	public enum ComponentType {
@@ -44,7 +48,7 @@ public class BeanString implements Iterable<BeanStringComponent> {
 	public BeanString(String beanString) {
 		this.beanString = beanString;
 	}
-	
+
 	private void initComponents() {
 		components = new ArrayList<BeanStringComponent>();
 		String [] leadingBits = beanString.split("\\{");
@@ -72,6 +76,10 @@ public class BeanString implements Iterable<BeanStringComponent> {
 	@Override
 	public Iterator<BeanStringComponent> iterator() {
 		return getComponents().iterator();
+	}
+	
+	public String toString() {
+		return beanString;
 	}
 	
 }
