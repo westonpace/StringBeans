@@ -5,6 +5,10 @@ import com.ptank.stringbeans.element.primitive.PrimitiveExpression;
 
 public class PrimitiveExpressionElement extends PrimitiveElement<PrimitiveExpression> implements Expression {
 
+	PrimitiveExpressionElement() {
+		super();
+	}
+	
 	public PrimitiveExpressionElement(PrimitiveExpression primitive) {
 		super(primitive);
 	}

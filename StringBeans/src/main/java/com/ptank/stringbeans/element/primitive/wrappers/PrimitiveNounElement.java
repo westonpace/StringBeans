@@ -5,6 +5,10 @@ import com.ptank.stringbeans.element.primitive.PrimitiveNoun;
 
 public class PrimitiveNounElement<T> extends PrimitiveElement<PrimitiveNoun<T>> implements Noun<T> {
 
+	PrimitiveNounElement() {
+		super();
+	}
+	
 	public PrimitiveNounElement(PrimitiveNoun<T> primitive) {
 		super(primitive);
 	}

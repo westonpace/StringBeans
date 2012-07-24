@@ -48,7 +48,7 @@ public class ElementChooser extends JList implements MouseListener {
 		addMouseListener(this);
 	}
 	
-	public ElementChooser(Library elementLibrary, Class<? extends LanguageElement> elementType) {
+	public ElementChooser(Library<?> elementLibrary, Class<? extends LanguageElement> elementType) {
 		super();
 		setModel(listModel);
 		this.elementLibrary = elementLibrary;

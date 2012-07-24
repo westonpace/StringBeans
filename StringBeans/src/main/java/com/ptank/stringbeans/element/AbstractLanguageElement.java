@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.ptank.stringbeans.element.BeanString.BeanStringComponent;
 import com.ptank.stringbeans.element.BeanString.ComponentType;
@@ -29,6 +30,7 @@ public class AbstractLanguageElement implements LanguageElement {
 	 * @see com.ptank.stringbeans.element.LanguageElement#getBeanString()
 	 */
 	@Override
+	@XmlTransient
 	public BeanString getBeanString() {
 		return beanString;
 	}
